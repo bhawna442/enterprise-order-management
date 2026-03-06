@@ -8,10 +8,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "order_items")
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
     @Id
@@ -31,4 +28,30 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
+
+    public OrderItem(CustomerOrder order, Product product, int quantity) {
+
+        if (order == null) {
+            throw new IllegalArgumentException("Order cannot be null");
+        }
+
+        if (product == null) {
+            throw new IllegalArgumentException("Product cannot be null");
+        }
+
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than zero");
+        }
+
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+
+        // Snapshot price at purchase time
+        this.priceAtPurchase = product.getPrice();
+    }
+
+
+
+
 }
