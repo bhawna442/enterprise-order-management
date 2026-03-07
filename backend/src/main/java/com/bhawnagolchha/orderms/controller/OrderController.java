@@ -3,6 +3,7 @@ package com.bhawnagolchha.orderms.controller;
 import com.bhawnagolchha.orderms.domain.CustomerOrder;
 import com.bhawnagolchha.orderms.dto.CreateOrderRequest;
 import com.bhawnagolchha.orderms.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,7 @@ public class OrderController {
         this.orderService=orderService;
     }
     @PostMapping("/addOrder")
-    public ResponseEntity<CustomerOrder> addOrder(@RequestBody CreateOrderRequest request){
+    public ResponseEntity<CustomerOrder> addOrder(@Valid @RequestBody CreateOrderRequest request){
         CustomerOrder order= orderService.createOrder(request.getUserId(),request.getItems());
         return ResponseEntity.ok(order);
     }
