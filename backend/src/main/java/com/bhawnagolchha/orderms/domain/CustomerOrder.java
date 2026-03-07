@@ -32,6 +32,13 @@ public class CustomerOrder {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems= new ArrayList<>();
 
+    public CustomerOrder(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+        this.user = user;
+    }
+
     public BigDecimal calculateTotal(){
         BigDecimal total = BigDecimal.ZERO;
         for (OrderItem orderItem : this.orderItems) {
