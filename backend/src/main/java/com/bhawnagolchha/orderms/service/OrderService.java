@@ -4,9 +4,12 @@ import com.bhawnagolchha.orderms.domain.CustomerOrder;
 import com.bhawnagolchha.orderms.domain.Product;
 import com.bhawnagolchha.orderms.domain.User;
 import com.bhawnagolchha.orderms.dto.OrderItemRequest;
+import com.bhawnagolchha.orderms.exceptions.ProductNotFoundException;
+import com.bhawnagolchha.orderms.exceptions.UserNotFoundException;
 import com.bhawnagolchha.orderms.repository.CustomerOrderRepository;
 import com.bhawnagolchha.orderms.repository.ProductRepository;
 import com.bhawnagolchha.orderms.repository.UserRepository;
+import org.springframework.jmx.export.notification.UnableToSendNotificationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,12 +33,12 @@ public class OrderService {
     @Transactional
     public CustomerOrder createOrder(Long userId, List<OrderItemRequest> items){
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("id",userId));
         CustomerOrder newOrder= new CustomerOrder(user);
         for (OrderItemRequest item : items) {
 
             Product product = productRepository.findById(item.getProductId())
-                    .orElseThrow(() -> new RuntimeException("Product not found"));
+                    .orElseThrow(() -> new ProductNotFoundException(item.getProductId()));
 
             newOrder.addItem(product, item.getQuantity());
         }

@@ -1,6 +1,7 @@
 package com.bhawnagolchha.orderms.service;
 
 import com.bhawnagolchha.orderms.domain.Product;
+import com.bhawnagolchha.orderms.exceptions.ProductNotFoundException;
 import com.bhawnagolchha.orderms.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,6 @@ public class ProductService {
 
     public Product getProduct(Long id){
         return productRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Product not found"));
+                .orElseThrow(()-> new ProductNotFoundException(id));
     }
 }
