@@ -6,6 +6,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -59,6 +60,10 @@ public class CustomerOrder {
         OrderItem orderItem = new OrderItem(this, product, quantity);
 
         orderItems.add(orderItem);
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return Collections.unmodifiableList(orderItems);
     }
 }
 
