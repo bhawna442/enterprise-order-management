@@ -7,10 +7,7 @@ import com.bhawnagolchha.orderms.mapper.OrderMapper;
 import com.bhawnagolchha.orderms.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,16 @@ public class OrderController {
     public ResponseEntity<OrderResponse> addOrder(@Valid @RequestBody CreateOrderRequest request){
         CustomerOrder order= orderService.createOrder(request.getUserId(),request.getItems());
         OrderResponse response = orderMapper.toOrderResponse(order);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponse> getOrder(@PathVariable Long id) {
+
+        CustomerOrder order = orderService.getOrderById(id);
+
+        OrderResponse response = orderMapper.toOrderResponse(order);
+
         return ResponseEntity.ok(response);
     }
 }

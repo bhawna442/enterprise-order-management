@@ -4,12 +4,12 @@ import com.bhawnagolchha.orderms.domain.CustomerOrder;
 import com.bhawnagolchha.orderms.domain.Product;
 import com.bhawnagolchha.orderms.domain.User;
 import com.bhawnagolchha.orderms.dto.OrderItemRequest;
+import com.bhawnagolchha.orderms.exceptions.OrderNotFoundException;
 import com.bhawnagolchha.orderms.exceptions.ProductNotFoundException;
 import com.bhawnagolchha.orderms.exceptions.UserNotFoundException;
 import com.bhawnagolchha.orderms.repository.CustomerOrderRepository;
 import com.bhawnagolchha.orderms.repository.ProductRepository;
 import com.bhawnagolchha.orderms.repository.UserRepository;
-import org.springframework.jmx.export.notification.UnableToSendNotificationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,5 +44,11 @@ public class OrderService {
         }
 
         return orderRepository.save(newOrder);
+    }
+
+    @Transactional(readOnly = true)
+    public CustomerOrder getOrderById(Long orderId) {
+        return orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderNotFoundException(orderId));
     }
 }
