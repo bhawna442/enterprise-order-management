@@ -1,6 +1,6 @@
 package com.bhawnagolchha.orderms.mapper;
 
-import com.bhawnagolchha.orderms.domain.CustomerOrder;
+import com.bhawnagolchha.orderms.domain.Order;
 import com.bhawnagolchha.orderms.domain.OrderItem;
 import com.bhawnagolchha.orderms.dto.OrderItemResponse;
 import com.bhawnagolchha.orderms.dto.OrderResponse;
@@ -20,7 +20,7 @@ public class OrderMapper {
         );
     }
 
-    public OrderResponse toOrderResponse(CustomerOrder order) {
+    public OrderResponse toOrderResponse(Order order) {
 
         List<OrderItemResponse> items = order.getOrderItems()
                 .stream()

@@ -1,6 +1,6 @@
 package com.bhawnagolchha.orderms.controller;
 
-import com.bhawnagolchha.orderms.domain.CustomerOrder;
+import com.bhawnagolchha.orderms.domain.Order;
 import com.bhawnagolchha.orderms.dto.CreateOrderRequest;
 import com.bhawnagolchha.orderms.dto.OrderResponse;
 import com.bhawnagolchha.orderms.mapper.OrderMapper;
@@ -24,7 +24,7 @@ public class OrderController {
     }
     @PostMapping("/addOrder")
     public ResponseEntity<OrderResponse> addOrder(@Valid @RequestBody CreateOrderRequest request){
-        CustomerOrder order= orderService.createOrder(request.getUserId(),request.getItems());
+        Order order= orderService.createOrder(request.getUserId(),request.getItems());
         OrderResponse response = orderMapper.toOrderResponse(order);
         return ResponseEntity.ok(response);
     }
@@ -32,7 +32,7 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponse> getOrder(@PathVariable Long id) {
 
-        CustomerOrder order = orderService.getOrderById(id);
+        Order order = orderService.getOrderById(id);
 
         OrderResponse response = orderMapper.toOrderResponse(order);
 

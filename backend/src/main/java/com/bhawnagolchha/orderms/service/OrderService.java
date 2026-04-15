@@ -1,6 +1,6 @@
 package com.bhawnagolchha.orderms.service;
 
-import com.bhawnagolchha.orderms.domain.CustomerOrder;
+import com.bhawnagolchha.orderms.domain.Order;
 import com.bhawnagolchha.orderms.domain.Product;
 import com.bhawnagolchha.orderms.domain.User;
 import com.bhawnagolchha.orderms.dto.OrderItemRequest;
@@ -31,10 +31,10 @@ public class OrderService {
     }
 
     @Transactional
-    public CustomerOrder createOrder(Long userId, List<OrderItemRequest> items){
+    public Order createOrder(Long userId, List<OrderItemRequest> items){
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("id",userId));
-        CustomerOrder newOrder= new CustomerOrder(user);
+        Order newOrder= new Order(user);
         for (OrderItemRequest item : items) {
 
             Product product = productRepository.findById(item.getProductId())
@@ -47,7 +47,7 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
-    public CustomerOrder getOrderById(Long orderId) {
+    public Order getOrderById(Long orderId) {
         return orderRepository.findById(orderId)
                 .orElseThrow(() -> new OrderNotFoundException(orderId));
     }
