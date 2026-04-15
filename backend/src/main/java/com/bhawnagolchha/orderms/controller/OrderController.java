@@ -1,8 +1,8 @@
 package com.bhawnagolchha.orderms.controller;
 
 import com.bhawnagolchha.orderms.domain.Order;
-import com.bhawnagolchha.orderms.dto.CreateOrderRequest;
-import com.bhawnagolchha.orderms.dto.OrderResponse;
+import com.bhawnagolchha.orderms.dto.request.CreateOrderRequest;
+import com.bhawnagolchha.orderms.dto.response.OrderResponse;
 import com.bhawnagolchha.orderms.mapper.OrderMapper;
 import com.bhawnagolchha.orderms.service.OrderService;
 import jakarta.validation.Valid;

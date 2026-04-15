@@ -1,4 +1,4 @@
-package com.bhawnagolchha.orderms.dto;
+package com.bhawnagolchha.orderms.dto.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 
 @Getter
 @AllArgsConstructor
-public class OrderItemResponse {
+public class ProductResponseDTO {
     private Long id;
-    private Integer quantity;
+    private String name;
     private BigDecimal price;
 }

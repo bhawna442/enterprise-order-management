@@ -1,5 +1,4 @@
-package com.bhawnagolchha.orderms.dto;
-
+package com.bhawnagolchha.orderms.dto.request;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

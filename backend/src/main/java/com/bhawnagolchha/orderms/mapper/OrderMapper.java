@@ -2,8 +2,8 @@ package com.bhawnagolchha.orderms.mapper;
 
 import com.bhawnagolchha.orderms.domain.Order;
 import com.bhawnagolchha.orderms.domain.OrderItem;
-import com.bhawnagolchha.orderms.dto.OrderItemResponse;
-import com.bhawnagolchha.orderms.dto.OrderResponse;
+import com.bhawnagolchha.orderms.dto.response.OrderItemResponse;
+import com.bhawnagolchha.orderms.dto.response.OrderResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

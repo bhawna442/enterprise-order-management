@@ -3,7 +3,7 @@ package com.bhawnagolchha.orderms.service;
 import com.bhawnagolchha.orderms.domain.Order;
 import com.bhawnagolchha.orderms.domain.Product;
 import com.bhawnagolchha.orderms.domain.User;
-import com.bhawnagolchha.orderms.dto.OrderItemRequest;
+import com.bhawnagolchha.orderms.dto.request.OrderItemRequest;
 import com.bhawnagolchha.orderms.exceptions.OrderNotFoundException;
 import com.bhawnagolchha.orderms.exceptions.ProductNotFoundException;
 import com.bhawnagolchha.orderms.exceptions.UserNotFoundException;

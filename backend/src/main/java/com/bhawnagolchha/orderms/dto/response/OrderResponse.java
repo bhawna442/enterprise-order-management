@@ -1,4 +1,4 @@
-package com.bhawnagolchha.orderms.dto;
+package com.bhawnagolchha.orderms.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,5 +14,4 @@ public class OrderResponse {
     private BigDecimal total;
     private LocalDateTime createdAt;
     private List<OrderItemResponse> items;
-
 }
