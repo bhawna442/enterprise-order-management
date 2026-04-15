@@ -1,10 +1,15 @@
 package com.bhawnagolchha.orderms.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
+@Data
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {

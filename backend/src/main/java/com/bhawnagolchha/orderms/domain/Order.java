@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+@Data
+@AllArgsConstructor
 @Entity
 @Table(name = "orders")
 public class Order {
