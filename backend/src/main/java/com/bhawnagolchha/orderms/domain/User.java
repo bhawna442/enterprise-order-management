@@ -1,33 +1,22 @@
 package com.bhawnagolchha.orderms.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@Builder
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(nullable = false,unique = true)
     private String email;
-
-    @Column(nullable = false)
     private String password;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
+    private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<CustomerOrder> customerOrders;
+    private List<Order> orders;
 }

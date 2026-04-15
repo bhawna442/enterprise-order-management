@@ -6,52 +6,21 @@ import lombok.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "order_items")
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name="order_items")
 public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private Integer quantity;
-
-    @Column(nullable = false)
+    private int quantity;
     private BigDecimal priceAtPurchase;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
-    private CustomerOrder order;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
-
-    public OrderItem(CustomerOrder order, Product product, int quantity) {
-
-        if (order == null) {
-            throw new IllegalArgumentException("Order cannot be null");
-        }
-
-        if (product == null) {
-            throw new IllegalArgumentException("Product cannot be null");
-        }
-
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than zero");
-        }
-
-        this.order = order;
-        this.product = product;
-        this.quantity = quantity;
-
-        // Snapshot price at purchase time
-        this.priceAtPurchase = product.getPrice();
-    }
-
-
-
-
 }
